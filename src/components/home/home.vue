@@ -16,7 +16,53 @@
       </el-row>
     </el-header>
     <el-container class="home-container">
-      <el-aside class="home-aside" width="200px">Aside</el-aside>
+      <el-aside class="home-aside" width="200px">
+        <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo aside-menu"
+          :unique-opened="true"
+          @open="handleOpen"
+          @close="handleClose">
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>用户管理</span>
+            </template>
+            <el-menu-item index="1-1">用户列表</el-menu-item>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>权限管理</span>
+            </template>
+            <el-menu-item index="2-2">角色列表</el-menu-item>
+            <el-menu-item index="2-3">用户列表</el-menu-item>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>商品管理</span>
+            </template>
+            <el-menu-item index="3-1">商品列表</el-menu-item>
+            <el-menu-item index="3-2">商品分类</el-menu-item>
+            <el-menu-item index="3-3">商品参数</el-menu-item>
+          </el-submenu>
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>订单管理</span>
+            </template>
+            <el-menu-item index="4-1">订单列表</el-menu-item>
+          </el-submenu>
+          <el-submenu index="5">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>数据统计</span>
+            </template>
+            <el-menu-item index="5-1">数据报表</el-menu-item>
+          </el-submenu>
+        </el-menu>
+      </el-aside>
       <el-main class="home-main">Main</el-main>
     </el-container>
   </el-container>
@@ -41,6 +87,12 @@ export default {
     return {}
   },
   methods: {
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
+    },
     logout () {
       this.$confirm('确定退出吗', '退出提示', {
         confirmButtonText: '确定',
@@ -70,7 +122,7 @@ export default {
 </script>
 
 <style>
-.home-container{
+.home-container,.aside-menu{
   height: 100%;
 }
 .home-header{
