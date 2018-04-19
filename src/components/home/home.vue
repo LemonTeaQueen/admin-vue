@@ -21,6 +21,7 @@
           default-active="2"
           class="el-menu-vertical-demo aside-menu"
           :unique-opened="true"
+          :router="true"
           @open="handleOpen"
           @close="handleClose">
           <el-submenu index="1">
@@ -28,15 +29,15 @@
               <i class="el-icon-location"></i>
               <span>用户管理</span>
             </template>
-            <el-menu-item index="1-1">用户列表</el-menu-item>
+            <el-menu-item index="/users">用户列表</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span>权限管理</span>
             </template>
-            <el-menu-item index="2-2">角色列表</el-menu-item>
-            <el-menu-item index="2-3">用户列表</el-menu-item>
+            <el-menu-item index="/roles">角色列表</el-menu-item>
+            <el-menu-item index="2-3">权限列表</el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
