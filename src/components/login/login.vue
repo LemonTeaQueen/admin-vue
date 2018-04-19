@@ -39,9 +39,15 @@ export default {
       const res = await axios.post('http://localhost:8888/api/private/v1/login', this.userForm)
       // console.log(res)
       if (res.data.meta.status === 200) {
+        // 登录成功,将服务器签发的用户身份令牌记录到localStorage中
+        // 其他需要使用Token的都去本地存储获取
+        // JSON.stringify()对象转字符串
+        window.localStorage.setItem('admin-token', JSON.stringify(res.data.data))
         this.$router.push({
           name: 'home'
         })
+      } else {
+        alert('登录失败')
       }
     }
   }
