@@ -3,20 +3,41 @@ import Router from 'vue-router'
 // @是src路径的别名,是Webpack配置的. 好处:无论index在哪里,这个路径都不用变!
 import Login from '@/components/login/login'
 import Home from '@/components/home/home'
-
+// 用户管理组件
+import UserList from '@/components/user-list/user-list.vue'
+// 角色管理组件
+import RoleList from '@/components/role-list/role-list.vue'
 Vue.use(Router)
 
 const router = new Router({
   routes: [
     {
-      name: 'login',
+      name: 'login', // login组件会渲染到APP.Vue根组件中的router-view标签中
       path: '/login',
       component: Login
     },
     {
-      name: 'home',
+      name: 'home', // home组件会渲染到APP.Vue根组件中的router-view标签中
       path: '/',
-      component: Home
+      component: Home,
+      // 通过配置子路由的方式让某个组件渲染到父路由组件
+      // 1 在父路由中添加<router-view><router-view>标记
+      // 2 在父路由中通过children来声明子路由
+      // 3 在children数组中配置一个一个子路由对象
+      // 当访问user-list组件时,会先渲染它的父路由组件
+      // 再将user-list组件渲染到父路由的router-view标签中
+      children: [
+        {
+          name: 'user-list',
+          path: '/users',
+          component: UserList
+        },
+        {
+          name: 'role-list',
+          path: '/roles',
+          component: RoleList
+        }
+      ]
     }
   ]
 })
