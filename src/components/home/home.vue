@@ -16,19 +16,19 @@
 
 <script>
 export default {
-  beforeCreate () {
-    // 如果没有登录则让用户跳转到登录组件
-    // 如果登录,则从本地存储拿到Token
-    // 如果有则让其通过,否则跳转的登录组件
-    // 如何验证票据的正确性,应该由服务器验证
-    const token = window.localStorage.getItem('admin-token')
-    console.log(token)
-    if (!token) {
-      this.$router.push({
-        name: 'login'
-      })
-    }
-  },
+  // beforeCreate () {
+  //   // 如果没有登录则让用户跳转到登录组件
+  //   // 如果登录,则从本地存储拿到Token
+  //   // 如果有则让其通过,否则跳转的登录组件
+  //   // 如何验证票据的正确性,应该由服务器验证
+  //   const token = window.localStorage.getItem('admin-token')
+  //   console.log(token)
+  //   if (!token) {
+  //     this.$router.push({
+  //       name: 'login'
+  //     })
+  //   }
+  // },
   data () {
     return {}
   }
