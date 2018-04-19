@@ -2,9 +2,17 @@
   <el-container class="home-container">
     <el-header class="home-header">
       <el-row>
-        <el-col :span="4"><div class="grid-content bg-purple home-logo">Logo</div></el-col>
-        <el-col :span="18"><div class="grid-content bg-purple home-title">电商后台管理系统</div></el-col>
-        <el-col :span="2"><div class="grid-content bg-purple home-out"><a href="">退出</a></div></el-col>
+        <el-col :span="4">
+          <div class="grid-content bg-purple home-logo">Logo</div>
+        </el-col>
+        <el-col :span="18">
+          <div class="grid-content bg-purple home-title">电商后台管理系统</div>
+        </el-col>
+        <el-col :span="2">
+          <div class="grid-content bg-purple home-out">
+            <a href="#" @click.prevent="logout">退出</a>
+          </div>
+        </el-col>
       </el-row>
     </el-header>
     <el-container class="home-container">
@@ -31,6 +39,32 @@ export default {
   // },
   data () {
     return {}
+  },
+  methods: {
+    logout () {
+      this.$confirm('确定退出吗', '退出提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // console.log('点击退出')
+        // 删除本地存储中的Token令牌
+        window.localStorage.removeItem('admin-token')
+        // 跳转到登录视图
+        this.$router.push({
+          name: 'login'
+        })
+        this.$message({
+          type: 'success',
+          message: '退出成功!'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消退出'
+        })
+      })
+    }
   }
 }
 </script>
